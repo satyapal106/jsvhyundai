@@ -20,5 +20,13 @@ Route::get('/about-us', [HomeController::class, 'About']);
 Route::get('/request-a-brochure', [HomeController::class, 'Brochure']);
 Route::get('/services', [HomeController::class, 'Services']);
 
-Route::get('/admin/login', [AdminController::class, 'Login']);
-Route::get('/dashboard', [AdminController::class, 'Dashboard']);
+
+Route::prefix('admin')->group( function() {
+    Route::match(['get', 'post'], 'login', [AdminController::class, 'Login']);
+    Route::middleware(['admin'])->group(function() {
+        Route::get('dashboard', [AdminController::class, 'Dashboard']);
+        Route::get('logout', [AdminController::class, 'Logout']);
+        Route::match(['get', 'post'], 'update-password', [AdminController::class, 'UpdatePassword']);
+        Route::post('check-currect-pasword', [AdminController::class, 'CheckCurrentPassword']);
+    });
+});

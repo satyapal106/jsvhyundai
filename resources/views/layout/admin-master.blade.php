@@ -13,7 +13,7 @@
     <meta property="og:description" content="Edumin - Bootstrap Admin Dashboard" />
     <meta property="og:image" content="social-image.png" />
     <meta name="format-detection" content="telephone=no">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- FAVICONS ICON -->
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets') }}/admin/images/favicon.png" />
