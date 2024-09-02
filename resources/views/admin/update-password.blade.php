@@ -10,7 +10,7 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Update Password</h4>
+                    <h4>Update Admin details</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -21,7 +21,56 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8">
+        <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="profile-settings">
+                            <div class="pt-3">
+                                <div class="settings-form">
+                                    @if (Session::has('error_msg'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <strong>{{ Session('error_msg') }}</strong>
+                                        </div>
+                                    @endif
+                                    @if (Session::has('success_msg'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <strong>{{ Session('success_msg') }}</strong>
+                                        </div>
+                                    @endif
+                                    <form method="POST" action="{{ url('admin/update-detail') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Email</label>
+                                                <input type="email" name="email"
+                                                    value="{{ Auth::guard('admin')->user()->email }}" placeholder="Email"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="admin-name">Name</label>
+                                                <input type="text" name="admin_name" value="{{ Auth::guard('admin')->user()->name }}" placeholder="Name"
+                                                    class="form-control">
+                                                </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="admin-mobile">Mobile</label>
+                                                <input type="text" name="admin_mobile" value="{{ Auth::guard('admin')->user()->mobile }}" placeholder="Mobile"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="image">Profile Image</label>
+                                                <input type="file" name="admin_image" placeholder="Mobile"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    </form>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <div id="profile-settings">
@@ -43,7 +92,7 @@
                                             <div class="form-group col-md-6">
                                                 <label>Email</label>
                                                 <input type="email" name="email"
-                                                    value="{{ Auth::guard('admin')->user()->email }}" placeholder="Email"
+                                                    value="{{ Auth::guard('admin')->user()->email }}" readonly="" placeholder="Email"
                                                     class="form-control">
                                             </div>
                                             <div class="form-group col-md-6">
@@ -63,7 +112,7 @@
                                                     placeholder="Password" class="form-control">
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Sign in</button>
+                                        <button class="btn btn-primary" type="submit">Submit</button>
                                     </form>
                                 </div>
                             </div>
