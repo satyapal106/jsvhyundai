@@ -26,7 +26,6 @@
 
     <!-- STYLESHEETS -->
     <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
-
 </head>
 
 <body class="h-100">
@@ -51,6 +50,11 @@
                                     @if(Session::has('error_msg'))
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <strong>{{Session('error_msg')}}</strong>
+                                    </div>
+                                    @endif
+                                    @if(Session::has('success_msg'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>{{Session('success_msg')}}</strong>
                                     </div>
                                     @endif
                                     <form action="{{ url('/admin/login') }}" method="POST">

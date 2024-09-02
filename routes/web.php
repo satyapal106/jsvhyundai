@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CarsProductController;
 
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
@@ -29,5 +31,8 @@ Route::prefix('admin')->group( function() {
         Route::match(['get', 'post'], 'update-password', [AdminController::class, 'UpdatePassword']);
         Route::post('update-detail', [AdminController::class, 'UpdateDetail']);
         Route::post('check-currect-pasword', [AdminController::class, 'CheckCurrentPassword']);
+        Route::match(['get', 'post'], 'cars-category', [CategoryController::class, 'CarsCategory']);
+        Route::match(['get', 'post'], 'car-details', [CarsProductController::class, 'CarDetails']);
+        Route::get('all-car-details', [CarsProductController::class, 'AllCarDetails']);
     });
 });

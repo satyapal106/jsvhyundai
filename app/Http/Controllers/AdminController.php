@@ -26,7 +26,6 @@ class AdminController extends Controller
                 'password.required' => 'Password is required'
             ];
 
-            //$this->validate($request, $rules, $customMessages);
             $validator = Validator::make($data, $rules, $customMessages);
 
             if ($validator->fails()) {
